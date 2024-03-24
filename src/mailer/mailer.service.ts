@@ -6,7 +6,7 @@ import { SendEmailDto } from './send-email.dto';
 export class MailerService {
   constructor(private readonly configService: ConfigService) {}
 
-  async sendMail({ email_to, template }: SendEmailDto) {
+  async sendMail({ email_to, template ,subject}: SendEmailDto) {
     const transporter = nodemailer.createTransport({
       host: this.configService.get('EMAIL_HOST'),
       port: this.configService.get('EMAIL_PORT_SSL'),
@@ -21,7 +21,7 @@ export class MailerService {
       .sendMail({
         from: this.configService.get('EMAIL_USERNAME'),
         to: email_to,
-        subject: 'Hello from NestJS',
+        subject: subject,
         html: template,
       })
       .then(() => {

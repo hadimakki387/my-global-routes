@@ -4,4 +4,6 @@ export class SendEmailDto {
   email_to: string;
   @IsString()
   template: string;
+  @IsString()
+  subject: string;
 }
