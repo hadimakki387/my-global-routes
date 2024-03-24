@@ -6,20 +6,20 @@ import { SendEmailDto } from './send-email.dto';
 export class MailerService {
   constructor(private readonly configService: ConfigService) {}
 
-  async sendMail({ email_to, template ,subject}: SendEmailDto) {
+  async sendMail({ email_to, template ,subject,from,ownerEmail,emailPassword}: SendEmailDto) {
     const transporter = nodemailer.createTransport({
       host: this.configService.get('EMAIL_HOST'),
       port: this.configService.get('EMAIL_PORT_SSL'),
       secure: true,
       auth: {
-        user: this.configService.get('EMAIL_USERNAME'),
-        pass: this.configService.get('EMAIL_PASSWORD'),
+        user: ownerEmail,
+        pass: emailPassword,
       },
     });
 
     return await transporter
       .sendMail({
-        from: this.configService.get('EMAIL_USERNAME'),
+        from: from,
         to: email_to,
         subject: subject,
         html: template,

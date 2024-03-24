@@ -6,4 +6,10 @@ export class SendEmailDto {
   template: string;
   @IsString()
   subject: string;
+  @IsString()
+  from: string;
+  @IsString()
+  ownerEmail: string;
+  @IsString()
+  emailPassword: string;
 }
