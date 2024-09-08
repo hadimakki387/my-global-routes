@@ -9,4 +9,4 @@ yarn build
 
 pm2 save
 
-pm2 start dist/src/main.js --name my-global-routes
+pm2 start dist/main.js --name my-global-routes
